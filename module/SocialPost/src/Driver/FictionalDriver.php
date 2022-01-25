@@ -17,9 +17,9 @@ use Traversable;
 class FictionalDriver implements SocialDriverInterface
 {
 
-    private const REGISTER_TOKEN_URI = '/assignment/register';
+    private const REGISTER_TOKEN_URI = 'assignment/register';
 
-    private const FETCH_POSTS_URI = '/assignment/posts';
+    private const FETCH_POSTS_URI = 'assignment/posts';
 
     private const TOKEN_CACHE_KEY = 'fictional-access-token';
 
@@ -123,10 +123,10 @@ class FictionalDriver implements SocialDriverInterface
     {
         //Todo: retrieve current user data from  an auth service stub
         $userData = [
-            'email' => 'your@email.address',
-            'name'  => 'YourName',
+            'email' => 'victorsantiago@outlook.com',
+            'name'  => 'Victor Santiago',
         ];
-
+        
         $response = $this->client->authRequest(self::REGISTER_TOKEN_URI, $userData);
         $response = \GuzzleHttp\json_decode($response, true);
 
@@ -152,7 +152,7 @@ class FictionalDriver implements SocialDriverInterface
         if (null !== $this->cache) {
             $token = $this->cache->get(self::TOKEN_CACHE_KEY);
         }
-
+        
         if (null === $token) {
             $token = $this->registerToken();
         }
